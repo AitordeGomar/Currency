@@ -8,9 +8,17 @@ export class ApiService {
 
   constructor(private httpClient:HttpClient) { }
 
-  API_KEY = 'http://api.nbp.pl/api/exchangerates/tables/a';
+  RATE_A = 'http://api.nbp.pl/api/exchangerates/tables/a';
+  RATE_B = 'http://api.nbp.pl/api/exchangerates/tables/b';
+  RATE_C = 'http://api.nbp.pl/api/exchangerates/tables/c';
 
-  getData(){
-    return this.httpClient.get(this.API_KEY)
+  getRateA(){
+    return this.httpClient.get(this.RATE_A)
+  }
+  getRateB(){
+    return this.httpClient.get(this.RATE_B)
+  }
+  getRateC(){
+    return this.httpClient.get(this.RATE_C)
   }
 }
