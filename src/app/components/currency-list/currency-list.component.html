@@ -1,0 +1,49 @@
+<button (click)="showA()">Type A</button>
+<button (click)="showB()">Type B</button>
+<button (click)="showC()">Type C</button>
+<h3>List of currencies</h3>
+
+<table [ngClass]="isAVisible ? 'visible' : 'hidden'">
+  <tr>
+    <th>Currency</th>
+    <th>Code</th>
+    <th>Mid</th>
+  </tr>
+  <tr *ngFor="let d of rateListA">
+    <td>{{ d.currency }}</td>
+    <td>{{ d.code }}</td>
+    <td>{{ d.mid }}</td>
+    <td><input type='checkbox'/></td>
+  </tr>
+  <button type='submit' (click)='addFavA()'>Add to favourites</button>
+</table>
+
+<table [ngClass]="isBVisible ? 'visible' : 'hidden'">
+  <tr>
+    <th>Currency</th>
+    <th>Code</th>
+    <th>Mid</th>
+  </tr>
+  <tr *ngFor="let d of rateListB">
+    <td>{{ d.currency }}</td>
+    <td>{{ d.code }}</td>
+    <td>{{ d.mid }}</td>
+    <td><input type='checkbox'/></td>
+  </tr>
+  <button type='submit' (click)="addFavB()">Add to favourites</button>
+</table>
+
+<table [ngClass]="isCVisible ? 'visible' : 'hidden'">
+  <tr>
+    <th>Currency</th>
+    <th>Code</th>
+    <th>Bid</th>
+    <th>Ask</th>
+  </tr>
+  <tr *ngFor="let d of rateListC">
+    <td>{{ d.currency }}</td>
+    <td>{{ d.code }}</td>
+    <td>{{ d.ask }}</td>
+    <td>{{d.bid }}</td>
+  </tr>
+</table>
