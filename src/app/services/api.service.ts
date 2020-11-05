@@ -11,6 +11,7 @@ export class ApiService {
   RATE_A = 'http://api.nbp.pl/api/exchangerates/tables/a';
   RATE_B = 'http://api.nbp.pl/api/exchangerates/tables/b';
   RATE_C = 'http://api.nbp.pl/api/exchangerates/tables/c';
+  USD_TODAY = 'http://api.nbp.pl/api/exchangerates/rates/c/usd/today/'
 
   getRateA(){
     return this.httpClient.get(this.RATE_A)
@@ -20,5 +21,9 @@ export class ApiService {
   }
   getRateC(){
     return this.httpClient.get(this.RATE_C)
+  }
+
+  getUSD(){
+    return this.httpClient.get(this.USD_TODAY);
   }
 }

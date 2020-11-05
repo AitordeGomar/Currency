@@ -50,7 +50,7 @@ export class CurrencyListComponent implements OnInit {
 
   addFavA() {
     for (this.i = 0; this.i < this.rateListA.length; this.i++) {
-      if(this.inputs[this.i + 1].checked && this.favouriteList.includes(this.rateListA[this.i].code)){
+      if(this.inputs[this.i].checked && this.favouriteList.includes(this.rateListA[this.i].code)){
         continue;
       }else{
       if (this.inputs[this.i].checked) {

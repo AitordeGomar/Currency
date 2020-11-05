@@ -1,6 +1,9 @@
 <button (click)="showA()">Type A</button>
 <button (click)="showB()">Type B</button>
 <button (click)="showC()">Type C</button>
+
+<div>My favourites: <span *ngFor='let f of favouriteList'>{{f}}, </span></div>
+
 <h3>List of currencies</h3>
 
 <table [ngClass]="isAVisible ? 'visible' : 'hidden'">
