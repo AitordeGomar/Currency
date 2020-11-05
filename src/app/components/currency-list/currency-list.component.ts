@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { ApiService } from '../../services/api.service';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-currency-list',
@@ -16,10 +17,10 @@ export class CurrencyListComponent implements OnInit {
   i = 0;
   j =0;
   l;
-  favouriteList=[];
+  favList=[];
   inputs = document.getElementsByTagName('input');
 
-  constructor(private ApiService: ApiService) {}
+  constructor(private ApiService: ApiService, private data:DataService) {}
   ngOnInit() {
     this.ApiService.getRateA().subscribe((data) => {
       this.rateListA = data[0].rates;
@@ -30,6 +31,8 @@ export class CurrencyListComponent implements OnInit {
     this.ApiService.getRateC().subscribe((data) => {
       this.rateListC = data[0].rates;
     });
+
+    this.favList = this.data.getData();
   }
 
   showA = function () {
@@ -50,29 +53,29 @@ export class CurrencyListComponent implements OnInit {
 
   addFavA() {
     for (this.i = 0; this.i < this.rateListA.length; this.i++) {
-      if(this.inputs[this.i].checked && this.favouriteList.includes(this.rateListA[this.i].code)){
+      if(this.inputs[this.i].checked && this.favList.includes(this.rateListA[this.i].code)){
         continue;
       }else{
       if (this.inputs[this.i].checked) {
-        this.favouriteList.push(this.rateListA[this.i].code);
+        this.favList.push(this.rateListA[this.i].code);
       }
     }
     }
-    console.log(this.favouriteList);
+    console.log(this.favList);
     this.i =0;
   }
   addFavB() {
     for (this.j = 0; this.j < this.rateListB.length; this.j++) {
       this.l = this.j + this.rateListA.length;
-      if(this.inputs[this.l].checked && this.favouriteList.includes(this.rateListB[this.j].code)){
+      if(this.inputs[this.l].checked && this.favList.includes(this.rateListB[this.j].code)){
         continue;
       }else{
         if(this.inputs[parseInt(this.rateListA.length)+ this.j].checked){
-        this.favouriteList.push(this.rateListB[this.j].code);
+        this.favList.push(this.rateListB[this.j].code);
       }
     }
   }
-  console.log(this.favouriteList);
+  console.log(this.favList);
     this.j=0;
   }
 }

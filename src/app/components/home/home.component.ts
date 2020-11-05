@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
 import { ApiService } from '../../services/api.service';
+import {DataService} from '../../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -8,15 +8,16 @@ import { ApiService } from '../../services/api.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  favList=[];
   rateListA;
   rateListB;
   rateListC;
   searchInput;
   usdSearched;
   eurSearched;
-  currencySearched;
+  currencySearched = 'USD';
 
-  constructor(private ApiService: ApiService) {}
+  constructor(private ApiService: ApiService, private data:DataService) {}
   ngOnInit() {
     this.ApiService.getRateA().subscribe((data) => {
       this.rateListA = data[0].rates;
@@ -33,27 +34,36 @@ export class HomeComponent implements OnInit {
     this.ApiService.getEUR().subscribe((data) => {
       this.eurSearched = data;
     });
+
+    this.favList = this.data.getData();
+
   }
+
+  // search(){
+  //   this.searchInput = document.getElementById('searchInput');
+  //   if(this.searchInput.value.length !== 3){
+  //     alert('error');
+  //   }else{
+  //     switch(this.searchInput.value.toUpperCase()){
+  //       case 'USD':
+  //       this.currencySearched = this.usdSearched;
+  //       break;
+  //       case 'EUR':
+  //         this.currencySearched = this.eurSearched;
+  //         break;
+  //       default:
+  //         alert('We do not find your currency');
+  //     }
+  //   }
 
   search(){
     this.searchInput = document.getElementById('searchInput');
-    if(this.searchInput.value.length !== 3){
-      alert('error');
-    }else{
-      switch(this.searchInput.value.toUpperCase()){
-        case 'USD':
-        this.currencySearched = this.usdSearched;
-        break;
-        case 'EUR':
-          this.currencySearched = this.eurSearched;
-          break;
-        default:
-          alert('We do not find your currency');
-      }
-    }
+    this.favList.push(this.searchInput.value);
+    console.log(this.favList);
+  }
 
 
 
     // console.log(this.searchInput.value);
   }
-  }
+  

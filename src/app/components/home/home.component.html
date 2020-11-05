@@ -1,4 +1,10 @@
 <h1>Currency</h1>
-<input type='text' id='searchInput' placeholder='USD'/><button (click)='search()'>Search</button>
+<input type="text" id="searchInput" placeholder="USD" /><button
+  (click)="search()"
+>
+  Search
+</button>
 
-<app-dash-info [currencySearched]='currencySearched'></app-dash-info>
+<app-dash-info [currencySearched]="currencySearched"></app-dash-info>
+
+<div>My favourites: <span *ngFor='let f of favList'>{{f}}, </span></div>
