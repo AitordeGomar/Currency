@@ -11,6 +11,8 @@ export class AppComponent implements OnInit{
   rateListB;
   rateListC;
   searchInput;
+  usdSearched;
+  eurSearched;
   currencySearched;
 
   constructor(private ApiService: ApiService) {}
@@ -25,8 +27,10 @@ export class AppComponent implements OnInit{
       this.rateListC = data[0].rates;
     });
     this.ApiService.getUSD().subscribe((data) => {
-      this.currencySearched = data;
-      console.log(this.currencySearched + 'usd');
+      this.usdSearched = data;
+    });
+    this.ApiService.getEUR().subscribe((data) => {
+      this.eurSearched = data;
     });
   }
 
@@ -35,7 +39,16 @@ export class AppComponent implements OnInit{
     if(this.searchInput.value.length !== 3){
       alert('error');
     }else{
-      console.log(this.currencySearched);
+      switch(this.searchInput.value.toUpperCase()){
+        case 'USD':
+        this.currencySearched = this.usdSearched;
+        break;
+        case 'EUR':
+          this.currencySearched = this.eurSearched;
+          break;
+        default:
+          alert('We do not find your currency');
+      }
     }
 
 
