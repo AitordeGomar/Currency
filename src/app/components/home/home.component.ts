@@ -28,6 +28,7 @@ export class HomeComponent implements OnInit {
   searchInput;
   currencySearched;
   i;
+  r;
 
   constructor(private ApiService: ApiService, private data: DataService) {
   }
@@ -135,6 +136,11 @@ export class HomeComponent implements OnInit {
   }
 
   remove(e) {
+    this.r = window.confirm(
+      'Do you want to remove this currency?'
+    );
+
+    if(this.r ===true){
     for (this.i = 0; this.i <= this.favList.length; this.i++) {
       if (this.favList.length === 0) {
         break;
@@ -144,12 +150,17 @@ export class HomeComponent implements OnInit {
         this.favList.splice(this.favList.indexOf(this.favList[this.i]), 1);
       }
     }
-  }
+    this.r = null;
+  }else{}}
 
   removeAll() {
-    window.confirm(
+    this.r = window.confirm(
       'Do you want to remove all currencies from your favourite list?'
     );
+
+    if(this.r ===true){
     this.favList = [];
+    this.r=null;
+    }else{}
   }
 }

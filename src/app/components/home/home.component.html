@@ -1,6 +1,7 @@
 <section class="component">
   <h3 style='text-align: center;'>Keep in mind your list disappears if you change tab</h3>
   <div class="search">
+    <h2>Add currency to your list</h2>
     <select type="text" id="searchInput" placeholder="USD">
       <option value="USD">USD</option>
       <option value="AUD">AUD</option>
@@ -17,11 +18,11 @@
       <option value="XDR">XDR</option>
     </select>
 
-    <button (click)="search()">Search</button>
+    <button (click)="search()">Add</button>
   </div >
   <div class=favList *ngIf='favList.length > 0'>
     <button (click)="removeAll()">Remove all</button>
-    <div>You are following: </div>
+    <div>Your list of favourites</div>
   
   <table>
     <tr>
