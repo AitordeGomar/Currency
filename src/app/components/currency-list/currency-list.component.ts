@@ -11,7 +11,7 @@ export class CurrencyListComponent implements OnInit {
   rateListA;
   rateListB;
   rateListC;
-  isAVisible: boolean = true;
+  isAVisible: boolean = false;
   isBVisible: boolean = false;
   isCVisible: boolean = false;
   i = 0;
