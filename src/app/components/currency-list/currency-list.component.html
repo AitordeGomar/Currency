@@ -1,10 +1,10 @@
+<section class='component'>
+  <div id='types'>
 <button (click)="showA()">Type A</button>
 <button (click)="showB()">Type B</button>
 <button (click)="showC()">Type C</button>
-
-<div>My favourites: <span *ngFor='let f of favList'>{{f}}, </span></div>
-
-<h3>List of currencies</h3>
+</div>
+<h3>List of currencies 04/11/2020</h3>
 
 <table [ngClass]="isAVisible ? 'visible' : 'hidden'">
   <tr>
@@ -16,9 +16,7 @@
     <td>{{ d.currency }}</td>
     <td>{{ d.code }}</td>
     <td>{{ d.mid }}</td>
-    <td><input type='checkbox'/></td>
   </tr>
-  <button type='submit' (click)='addFavA()'>Add to favourites</button>
 </table>
 
 <table [ngClass]="isBVisible ? 'visible' : 'hidden'">
@@ -31,9 +29,7 @@
     <td>{{ d.currency }}</td>
     <td>{{ d.code }}</td>
     <td>{{ d.mid }}</td>
-    <td><input type='checkbox'/></td>
   </tr>
-  <button type='submit' (click)="addFavB()">Add to favourites</button>
 </table>
 
 <table [ngClass]="isCVisible ? 'visible' : 'hidden'">
@@ -50,3 +46,4 @@
     <td>{{d.bid }}</td>
   </tr>
 </table>
+</section>

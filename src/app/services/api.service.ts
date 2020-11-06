@@ -1,32 +1,23 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ApiService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient:HttpClient) { }
+  RATE_A = 'http://api.nbp.pl/api/exchangerates/tables/a/2020-11-04';
+  RATE_B = 'http://api.nbp.pl/api/exchangerates/tables/b/2020-11-04';
+  RATE_C = 'http://api.nbp.pl/api/exchangerates/tables/c/2020-11-04';
 
-  RATE_A = 'http://api.nbp.pl/api/exchangerates/tables/a';
-  RATE_B = 'http://api.nbp.pl/api/exchangerates/tables/b';
-  RATE_C = 'http://api.nbp.pl/api/exchangerates/tables/c';
-  USD_TODAY = 'http://api.nbp.pl/api/exchangerates/rates/c/usd/today/';
-  EUR_TODAY = 'http://api.nbp.pl/api/exchangerates/rates/c/EUR/today/';
-
-  getRateA(){
-    return this.httpClient.get(this.RATE_A)
+  getRateA() {
+    return this.httpClient.get(this.RATE_A);
   }
-  getRateB(){
-    return this.httpClient.get(this.RATE_B)
+  getRateB() {
+    return this.httpClient.get(this.RATE_B);
   }
-  getRateC(){
-    return this.httpClient.get(this.RATE_C)
-  }
-  getUSD(){
-    return this.httpClient.get(this.USD_TODAY);
-  }
-  getEUR(){
-    return this.httpClient.get(this.EUR_TODAY);
+  getRateC() {
+    return this.httpClient.get(this.RATE_C);
   }
 }

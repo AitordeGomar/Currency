@@ -6,7 +6,6 @@ import {RouterModule} from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CurrencyListComponent } from './components/currency-list/currency-list.component';
-import { DashInfoComponent } from './components/dash-info/dash-info.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { HomeComponent } from './components/home/home.component';
 
@@ -15,7 +14,6 @@ import { HomeComponent } from './components/home/home.component';
   declarations: [
     AppComponent,
     CurrencyListComponent,
-    DashInfoComponent,
     NavbarComponent,
     HomeComponent
   ],

@@ -1,23 +1,36 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import {DataService} from '../../services/data.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  favList=[];
+  favList = [];
   rateListA;
   rateListB;
   rateListC;
-  searchInput;
   usdSearched;
+  audSearched;
+  cadSearched;
   eurSearched;
-  currencySearched = 'USD';
+  hufSearched;
+  chfSearched;
+  gbpSearched;
+  jpySearched;
+  czkSearched;
+  dkkSearched;
+  nokSearched;
+  sekSearched;
+  xdrSearched;
+  searchInput;
+  currencySearched;
+  i;
 
-  constructor(private ApiService: ApiService, private data:DataService) {}
+  constructor(private ApiService: ApiService, private data: DataService) {
+  }
   ngOnInit() {
     this.ApiService.getRateA().subscribe((data) => {
       this.rateListA = data[0].rates;
@@ -28,42 +41,115 @@ export class HomeComponent implements OnInit {
     this.ApiService.getRateC().subscribe((data) => {
       this.rateListC = data[0].rates;
     });
-    this.ApiService.getUSD().subscribe((data) => {
-      this.usdSearched = data;
+    this.ApiService.getRateC().subscribe((data) => {
+      this.usdSearched = data[0].rates[0];
     });
-    this.ApiService.getEUR().subscribe((data) => {
-      this.eurSearched = data;
+    this.ApiService.getRateC().subscribe((data) => {
+      this.audSearched = data[0].rates[1];
     });
-
-    this.favList = this.data.getData();
-
+    this.ApiService.getRateC().subscribe((data) => {
+      this.cadSearched = data[0].rates[2];
+    });
+    this.ApiService.getRateC().subscribe((data) => {
+      this.eurSearched = data[0].rates[3];
+    });
+    this.ApiService.getRateC().subscribe((data) => {
+      this.hufSearched = data[0].rates[4];
+    });
+    this.ApiService.getRateC().subscribe((data) => {
+      this.chfSearched = data[0].rates[5];
+    });
+    this.ApiService.getRateC().subscribe((data) => {
+      this.gbpSearched = data[0].rates[6];
+    });
+    this.ApiService.getRateC().subscribe((data) => {
+      this.jpySearched = data[0].rates[7];
+    });
+    this.ApiService.getRateC().subscribe((data) => {
+      this.czkSearched = data[0].rates[8];
+    });
+    this.ApiService.getRateC().subscribe((data) => {
+      this.dkkSearched = data[0].rates[9];
+    });
+    this.ApiService.getRateC().subscribe((data) => {
+      this.nokSearched = data[0].rates[10];
+    });
+    this.ApiService.getRateC().subscribe((data) => {
+      this.sekSearched = data[0].rates[11];
+    });
+    this.ApiService.getRateC().subscribe((data) => {
+      this.xdrSearched = data[0].rates[12];
+    });
   }
 
-  // search(){
-  //   this.searchInput = document.getElementById('searchInput');
-  //   if(this.searchInput.value.length !== 3){
-  //     alert('error');
-  //   }else{
-  //     switch(this.searchInput.value.toUpperCase()){
-  //       case 'USD':
-  //       this.currencySearched = this.usdSearched;
-  //       break;
-  //       case 'EUR':
-  //         this.currencySearched = this.eurSearched;
-  //         break;
-  //       default:
-  //         alert('We do not find your currency');
-  //     }
-  //   }
-
-  search(){
+  search() {
     this.searchInput = document.getElementById('searchInput');
-    this.favList.push(this.searchInput.value);
-    console.log(this.favList);
+
+    switch (this.searchInput.value.toUpperCase()) {
+      case 'USD':
+        this.currencySearched = this.usdSearched;
+        break;
+      case 'AUD':
+        this.currencySearched = this.audSearched;
+        break;
+      case 'CAD':
+        this.currencySearched = this.cadSearched;
+        break;
+      case 'EUR':
+        this.currencySearched = this.eurSearched;
+        break;
+      case 'HUF':
+        this.currencySearched = this.hufSearched;
+        break;
+      case 'CHF':
+        this.currencySearched = this.chfSearched;
+        break;
+      case 'GBP':
+        this.currencySearched = this.gbpSearched;
+        break;
+      case 'JPY':
+        this.currencySearched = this.jpySearched;
+        break;
+      case 'CZK':
+        this.currencySearched = this.czkSearched;
+        break;
+      case 'DKK':
+        this.currencySearched = this.dkkSearched;
+        break;
+      case 'NOK':
+        this.currencySearched = this.nokSearched;
+        break;
+      case 'SEK':
+        this.currencySearched = this.sekSearched;
+        break;
+      case 'XDR':
+        this.currencySearched = this.xdrSearched;
+        break;
+    }
+
+    this.searchInput = document.getElementById('searchInput');
+    if (this.favList.includes(this.currencySearched)) {
+    } else {
+      this.favList.push(this.currencySearched);
+    }
   }
 
-
-
-    // console.log(this.searchInput.value);
+  remove(e) {
+    for (this.i = 0; this.i <= this.favList.length; this.i++) {
+      if (this.favList.length === 0) {
+        break;
+      } else if (e.path[1].children[0].innerText != this.favList[this.i].code) {
+        continue;
+      } else {
+        this.favList.splice(this.favList.indexOf(this.favList[this.i]), 1);
+      }
+    }
   }
-  
+
+  removeAll() {
+    window.confirm(
+      'Do you want to remove all currencies from your favourite list?'
+    );
+    this.favList = [];
+  }
+}

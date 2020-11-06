@@ -1,0 +1,68 @@
+.search{
+    text-align: center;
+    width:80vw;
+    margin: 0 auto;
+    margin-top:4vw;
+}
+
+.search select{
+    display: inline-block;
+    margin-right: 3vw;
+    height: 50px;
+    width:50vw;
+}
+
+.search button{
+    height:50px;
+}
+
+.favList button{
+    display: block;
+    margin-left: auto;
+    margin-right:auto;
+}
+
+.favList div{
+    display: inline-block;
+    text-align: center;
+}
+
+
+.favList, table{
+text-align: center;
+width:80vw;
+margin-top: 3vw;
+}
+
+table{
+    margin-left: 10vw;
+    margin-right: 10vw;
+    margin-top: 3vw;
+}
+
+td{
+   border:1px solid black;
+   padding:5px;
+}
+
+table th{
+    font-weight: bolder;
+    text-transform: uppercase ;
+    border:1px solid black;
+    border-bottom:3px solid black;
+}
+table td:nth-of-type(n){
+    border-bottom: 3px solid red;
+}
+table td:nth-of-type(1){
+    font-weight: bold;
+}
+
+tr button{
+    height: 33px;
+}
+
+.favList table button{
+    margin-left: 5px;
+    margin-right: auto;
+}

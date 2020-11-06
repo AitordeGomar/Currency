@@ -1,10 +1,40 @@
-<h1>Currency</h1>
-<input type="text" id="searchInput" placeholder="USD" /><button
-  (click)="search()"
->
-  Search
-</button>
+<section class="component">
+  <h3 style='text-align: center;'>Keep in mind your list disappears if you change tab</h3>
+  <div class="search">
+    <select type="text" id="searchInput" placeholder="USD">
+      <option value="USD">USD</option>
+      <option value="AUD">AUD</option>
+      <option value="CAD">CAD</option>
+      <option value="EUR">EUR</option>
+      <option value="HUF">HUF</option>
+      <option value="CHF">CHF</option>
+      <option value="GBP">GBP</option>
+      <option value="JPY">JPY</option>
+      <option value="CZK">CZK</option>
+      <option value="DKK">DKK</option>
+      <option value="NOK">NOK</option>
+      <option value="SEK">SEK</option>
+      <option value="XDR">XDR</option>
+    </select>
 
-<app-dash-info [currencySearched]="currencySearched"></app-dash-info>
-
-<div>My favourites: <span *ngFor='let f of favList'>{{f}}, </span></div>
+    <button (click)="search()">Search</button>
+  </div >
+  <div class=favList *ngIf='favList.length > 0'>
+    <button (click)="removeAll()">Remove all</button>
+    <div>You are following: </div>
+  
+  <table>
+    <tr>
+      <th>Code</th>
+      <th>Bid</th>
+      <th>Ask</th>
+    </tr>
+    <tr *ngFor="let f of favList">
+      <td>{{ f.code }}</td>
+      <td>{{ f.bid }}</td>
+      <td>{{ f.ask }}</td>
+      <button name="{{ f }}" (click)="remove($event)">Remove</button>
+    </tr>
+  </table>
+</div>
+</section>
