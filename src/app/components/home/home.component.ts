@@ -137,7 +137,7 @@ export class HomeComponent implements OnInit {
 
   remove(e) {
     this.r = window.confirm(
-      'Do you want to remove this currency?'
+      'Do you want to remove '+ e.path[1].children[0].innerText+'?'
     );
 
     if(this.r ===true){
