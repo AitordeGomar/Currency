@@ -18,6 +18,11 @@ h3, h4{
     margin-right: auto;
 }
 
+#types button{
+    margin-left:5px;
+    margin-right:5px;
+}
+
 #types button:focus{
     background-color:#7f8081;
 }
