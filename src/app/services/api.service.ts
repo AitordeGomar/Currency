@@ -11,13 +11,13 @@ export class ApiService {
   RATE_B = 'https://api.nbp.pl/api/exchangerates/tables/b/2020-11-04';
   RATE_C = 'https://api.nbp.pl/api/exchangerates/tables/c/2020-11-04';
 
-  getRateA() {
+  getRateA(): any {
     return this.httpClient.get(this.RATE_A);
   }
-  getRateB() {
+  getRateB(): any {
     return this.httpClient.get(this.RATE_B);
   }
-  getRateC() {
+  getRateC(): any {
     return this.httpClient.get(this.RATE_C);
   }
 }

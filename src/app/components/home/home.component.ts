@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -9,8 +8,6 @@ import { DataService } from '../../services/data.service';
 })
 export class HomeComponent implements OnInit {
   favList = [];
-  rateListA;
-  rateListB;
   rateListC;
   usdSearched;
   audSearched;
@@ -30,60 +27,54 @@ export class HomeComponent implements OnInit {
   i;
   r;
 
-  constructor(private ApiService: ApiService, private data: DataService) {
-  }
-  ngOnInit() {
-    this.ApiService.getRateA().subscribe((data) => {
-      this.rateListA = data[0].rates;
-    });
-    this.ApiService.getRateB().subscribe((data) => {
-      this.rateListB = data[0].rates;
-    });
-    this.ApiService.getRateC().subscribe((data) => {
+  constructor(private Api: ApiService) {}
+  ngOnInit(): void {
+
+    this.Api.getRateC().subscribe((data) => {
       this.rateListC = data[0].rates;
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.usdSearched = data[0].rates[0];
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.audSearched = data[0].rates[1];
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.cadSearched = data[0].rates[2];
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.eurSearched = data[0].rates[3];
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.hufSearched = data[0].rates[4];
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.chfSearched = data[0].rates[5];
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.gbpSearched = data[0].rates[6];
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.jpySearched = data[0].rates[7];
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.czkSearched = data[0].rates[8];
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.dkkSearched = data[0].rates[9];
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.nokSearched = data[0].rates[10];
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.sekSearched = data[0].rates[11];
     });
-    this.ApiService.getRateC().subscribe((data) => {
+    this.Api.getRateC().subscribe((data) => {
       this.xdrSearched = data[0].rates[12];
     });
   }
 
-  search() {
+  add(): void {
     this.searchInput = document.getElementById('searchInput');
 
     switch (this.searchInput.value.toUpperCase()) {
@@ -135,32 +126,37 @@ export class HomeComponent implements OnInit {
     }
   }
 
-  remove(e) {
+  remove(e): void {
     this.r = window.confirm(
-      'Do you want to remove '+ e.path[1].children[0].innerText+'?'
+      'Do you want to remove ' + e.path[1].children[0].innerText + '?'
     );
 
-    if(this.r ===true){
-    for (this.i = 0; this.i <= this.favList.length; this.i++) {
-      if (this.favList.length === 0) {
-        break;
-      } else if (e.path[1].children[0].innerText != this.favList[this.i].code) {
-        continue;
-      } else {
-        this.favList.splice(this.favList.indexOf(this.favList[this.i]), 1);
+    if (this.r === true) {
+      for (this.i = 0; this.i <= this.favList.length; this.i++) {
+        if (this.favList.length === 0) {
+          break;
+        } else if (
+          e.path[1].children[0].innerText !== this.favList[this.i].code
+        ) {
+          continue;
+        } else {
+          this.favList.splice(this.favList.indexOf(this.favList[this.i]), 1);
+        }
       }
+      this.r = null;
+    } else {
     }
-    this.r = null;
-  }else{}}
+  }
 
-  removeAll() {
+  removeAll(): void {
     this.r = window.confirm(
       'Do you want to remove all currencies from your favourite list?'
     );
 
-    if(this.r ===true){
-    this.favList = [];
-    this.r=null;
-    }else{}
+    if (this.r === true) {
+      this.favList = [];
+      this.r = null;
+    } else {
+    }
   }
 }
