@@ -12,10 +12,19 @@ This project has been created by Aitor de Gomar Sánchez requested by https://bl
 * Possibility to remove one or all currencies from the list
 * Possibility to cancel currency remove - confirmation popup
 
-# Development server
 # Deployment service
 
 You will find this repository on the following link: https://currency-degomar.web.app/ hosted by Firebase.
+
+# Sequence / logic explained
+
+* api.service.ts file is created to get data from the external web API.
+* app.component file contains a navigation bar and a router-outlet to toggle home/currencyList view.
+* navbar.component includes two simple buttons to navigate,
+* currencylist.component contains some ngIf directives according to boolean values and tables that collect and display the data from api.service.ts.
+* home.component shows a select HTML tag with some options (currencies from table C) to choose and a "add" button managed by a JavaScript switch statement and a if conditional that push the selected option on a displayed table in case it was not already added (repeated values are avoided).
+* On clicking the "add" button, a table shows up: it uses a ngFor to map a favourite list Array and display the information adding a button which you can use to delete it.
+* Finally the "remove" buttons is set to show a confirmation pop-up in case it was pressed by accident. 2 kind of buttons: "remove all" button clears out your array of FavList after confirming. Individual button confirmation message is customized to show you the currency code (USD, EUR...) you are clicking in order to avoid any misunderstading due to the short distance between each button.
 
 # Structure
 
@@ -30,6 +39,7 @@ This chart shows the code symbol, ask price, bid price and a remove button for e
 ## Currency List view
 
 This view contains the title and the navigation bar and you are asked to choose one of the three options (different types) and, once you choose any, you are able to see the whole list with the name, code and mid (or ask and bid) price.
+
 
 ## Personal considerations
 
